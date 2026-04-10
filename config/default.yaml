@@ -1,0 +1,50 @@
+# OSS-1 Default Configuration
+# Self-Service Thermal Shield Inspector
+
+# Audio analysis settings
+audio:
+  sample_rate: 44100
+  duration_sec: 2
+  n_fft: 2048
+  hop_length: 512
+  mel_bands: 128
+  mfcc_coeffs: 20
+  min_freq_hz: 100
+  max_freq_hz: 5000
+  distance_threshold: 0.35  # Cosine distance threshold for defect flagging
+
+# Vision analysis settings
+vision:
+  img_size: [224, 224]
+  model_path: "models/surface_crack.pt"
+  confidence_threshold: 0.6
+  device: "auto"  # auto, cuda, cpu
+
+# Digital Twin settings
+digital_twin:
+  db_path: "digital_twin_db.json"
+  health_weights:
+    surface_cracks: 0.30
+    chip_damage: 0.25
+    oxidation: 0.20
+    acoustic_distance: 0.25
+  replace_threshold: 0.70
+  warning_threshold: 0.85
+
+# Recording settings
+recording:
+  default_device: "default"
+  channels: 1
+  format: "wav"
+
+# Report settings
+report:
+  output_format: "html"
+  include_raw_data: true
+  include_heatmap: true
+
+# Pilot settings
+pilot:
+  default_tiles: 20
+  baseline_session: "baseline"
+  defect_session: "defect"
