@@ -1,0 +1,44 @@
+# OSS-1 Default Configuration
+# Acoustic-Visual Fusion for Starship TPS Inspection
+
+# Recording settings
+recording:
+  sample_rate: 44100
+  duration_seconds: 2
+  channels: 1
+  format: "wav"
+
+# Analysis thresholds
+analysis:
+  # Acoustic
+  acoustic_distance_threshold: 0.35
+  min_frequency_hz: 100
+  max_frequency_hz: 5000
+  
+  # Vision
+  confidence_threshold: 0.6
+  image_size: [224, 224]
+  crack_density_threshold: 0.05
+  chip_count_threshold: 2
+  oxidation_ratio_threshold: 0.3
+
+# Digital twin
+digital_twin:
+  health_weights:
+    surface_cracks: 0.30
+    chip_damage: 0.25
+    oxidation: 0.20
+    acoustic_distance: 0.25
+  replace_threshold: 0.70
+  warning_threshold: 0.85
+
+# Report
+report:
+  output_format: "html"
+  include_raw_data: false
+  include_spectrograms: true
+
+# Hardware
+hardware:
+  use_gpu: false
+  batch_size: 8
